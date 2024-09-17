@@ -1,19 +1,47 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+const tintColorLight = '#222222';
+const tintColorDark = '#f9f9f9';
 
-export default {
+export const Colors = {
   light: {
-    text: '#000',
-    background: '#fff',
+    text: '#222222',
+    textMuted: '#00000080',
+    textInverted: '#f9f9f9',
+    background: '#f9f9f9',
+    backgroundMuted: '#00000020',
+    backgroundTransparent: 'f9f9f950',
+    header: '#1d1d1d',
+    heading: '#efefef',
     tint: tintColorLight,
-    tabIconDefault: '#ccc',
+    icon: tintColorLight,
+    iconMuted: '#b7b7b7',
+    tabIconDefault: '#b7b7b7',
     tabIconSelected: tintColorLight,
+    buttonPrimary: '#222222',
+    input: '#ededed',
+    card: '#ededed',
+    chip: '#ededed',
+    chipActive: '#e2e8f0',
+    chipText: '#5d5d5d',
   },
   dark: {
-    text: '#fff',
-    background: '#000',
+    text: '#f9f9f9',
+    textMuted: '#f9f9f950',
+    textInverted: '#222222',
+    background: '#222222',
+    backgroundMuted: '#ffffff20',
+    backgroundTransparent: 'f9f9f950',
+    header: '#1d1d1d',
+    heading: '#1d1d1d',
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
+    icon: '#ffffff',
+    iconMuted: '#ffffff20',
+    tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
+    buttonPrimary: '#f9f9f9',
+    input: '#ffffff10',
+    card: '#000',
+    chip: '#dcdcdc90',
+    chipActive: '#e2e8f0',
+    chipText: '',
   },
 };
