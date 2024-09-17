@@ -1,17 +1,19 @@
 import { StyleSheet } from 'react-native';
 
 import { Text, View } from '@/components/ui';
+import Product from '@/components/product';
+import products from '../../../assets/data/products';
+
+const product = products[0];
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>GoBites</Text>
-      <View
-        style={styles.separator}
-        lightColor='#eee'
-        darkColor='rgba(255,255,255,0.1)'
+      <Product
+        image={product.image}
+        name={product.name}
+        price={product.price}
       />
-      <Text>Index page</Text>
     </View>
   );
 }
