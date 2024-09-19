@@ -1,23 +1,33 @@
-import { Image, StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from './ui';
 
-type ProductProps = {
-  image: string;
-  name: string;
-  price: number;
-};
+import type { Product } from '@/types';
+import { Link } from 'expo-router';
+import Card from './ui/card';
 
-export default function Product({ image, name, price }: ProductProps) {
+type ProductProps = {
+  product: Product;
+};
+export default function Product({ product }: ProductProps) {
   return (
-    <View>
-      <Image source={{ uri: image }} style={styles.image} />
-      <Text type='subHeading'>{name}</Text>
-      <Text style={styles.price}>{price}</Text>
-    </View>
+    <Link href={`/menu/${product.id}`} asChild>
+      <Card style={styles.card}>
+        <Image
+          source={{ uri: product.image || '' }}
+          style={styles.image}
+          resizeMode='contain'
+        />
+        <Text type='subHeading'>{product.name}</Text>
+        <Text style={styles.price}>${product.price}</Text>
+      </Card>
+    </Link>
   );
 }
 
 const styles = StyleSheet.create({
+  card: {
+    justifyContent: 'space-between',
+  },
   image: {
     width: '100%',
     aspectRatio: 1,
