@@ -1,4 +1,3 @@
-import { useTheme } from '@/hooks/useTheme';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {
   DarkTheme,
@@ -10,6 +9,8 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { CartProvider } from '@/context/cart-context';
+import { useTheme } from '@/hooks/useTheme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,14 +53,26 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const { colorScheme } = useTheme();
+  const { colorScheme, theme } = useTheme();
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-        <Stack.Screen name='modal' options={{ presentation: 'modal' }} />
-      </Stack>
+      <CartProvider>
+        <Stack
+          screenOptions={{ headerStyle: { backgroundColor: theme.background } }}
+        >
+          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+          <Stack.Screen
+            name='cart'
+            options={{
+              presentation: 'modal',
+              title: 'Cart',
+              headerShadowVisible: false,
+              headerTitleStyle: { fontFamily: 'Satoshi-Black' },
+            }}
+          />
+        </Stack>
+      </CartProvider>
     </ThemeProvider>
   );
 }
