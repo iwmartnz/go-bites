@@ -1,60 +1,52 @@
-import { StyleSheet, type PressableProps, Pressable } from 'react-native';
-
+import { StyleSheet, type PressableProps, Pressable, View } from 'react-native';
+import { forwardRef } from 'react';
+import { useTheme } from '@/hooks/useTheme';
 import Text from '@/components/ui/text';
 
-import { useTheme } from '@/hooks/useTheme';
-
-type Props = PressableProps & {
-  type?: 'default' | 'primary' | 'secondary' | 'chip';
-  title: string;
-  lightColor?: string;
-  darkColor?: string;
+type ButtonProps = PressableProps & {
+  type?: 'default' | 'chip';
+  text: string;
 };
 
-export default function Button({
-  style,
-  type,
-  title,
-  lightColor,
-  darkColor,
-  ...res
-}: Props) {
-  const { theme } = useTheme();
+const Button = forwardRef<View | null, ButtonProps>(
+  ({ style, type = 'default', text, ...res }, ref) => {
+    const { theme } = useTheme();
 
-  return (
-    <Pressable
-      style={({ pressed }) => [
-        type === 'primary' && {
-          backgroundColor: theme.buttonPrimary,
-          ...styles.primary,
-        },
-        type === 'chip' && {
-          backgroundColor: theme.chip,
-          ...styles.chip,
-        },
-      ]}
-      {...res}
-    >
-      <Text
-        style={[
-          { ...styles.default },
-          type === 'primary' && { color: theme.textInverted },
-          type === 'chip' && { color: theme.chipText },
+    return (
+      <Pressable
+        ref={ref}
+        style={({ pressed }) => [
+          type === 'default' && {
+            ...styles.default,
+            backgroundColor: theme.button,
+          },
+          type === 'chip' && {
+            ...styles.chip,
+            backgroundColor: theme.chip,
+          },
         ]}
+        {...res}
       >
-        {title}
-      </Text>
-    </Pressable>
-  );
-}
+        <Text
+          style={[
+            { ...styles.textDefault },
+            type === 'default' && { color: theme.textInverted },
+            type === 'chip' && { color: theme.chipText },
+          ]}
+        >
+          {text}
+        </Text>
+      </Pressable>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
-  default: { fontSize: 16, fontFamily: 'Satoshi-Black' },
-  primary: {
+  default: {
     height: 70,
     borderRadius: 20,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   secondary: {
     backgroundColor: '#5b5b5b',
@@ -64,4 +56,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 50,
   },
+  textDefault: {
+    fontSize: 16,
+    fontFamily: 'Satoshi-Black',
+  },
 });
+
+export default Button;
