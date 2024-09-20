@@ -38,9 +38,7 @@ export default function ProductDetailScreen() {
           headerRight: () => (
             <Link href={`/(admin)/menu/create?id=${id}`} asChild>
               <Pressable>
-                {({ pressed }) => (
-                  <Edit color={theme.adminTint} variant='filled' />
-                )}
+                {({ pressed }) => <Edit color={theme.tint} variant='filled' />}
               </Pressable>
             </Link>
           ),

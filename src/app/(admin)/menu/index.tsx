@@ -20,7 +20,7 @@ export default function MenuScreen() {
           headerRight: () => (
             <Link href='/(admin)/menu/create' asChild>
               <Pressable>
-                {({ pressed }) => <PlusSquare color={theme.adminTint} />}
+                {({ pressed }) => <PlusSquare color={theme.tint} />}
               </Pressable>
             </Link>
           ),

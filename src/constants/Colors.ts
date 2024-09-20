@@ -1,21 +1,18 @@
 const tintColorLight = '#222222';
 const tintColorDark = '#f9f9f9';
-const adminTintColorLight = '#222222';
-const adminTintColorDark = '#1e40af';
 
 export const Colors = {
   light: {
     text: '#222222',
     textMuted: '#00000080',
     textInverted: '#f9f9f9',
-    textLink: '#f97316',
+    textLink: '#3b82f6',
     background: '#f9f9f9',
     backgroundMuted: '#00000020',
     backgroundTransparent: 'f9f9f950',
     header: '#1d1d1d',
     heading: '#efefef',
     tint: tintColorLight,
-    adminTint: adminTintColorLight,
     icon: tintColorLight,
     iconMuted: '#b7b7b7',
     tabIconDefault: '#b7b7b7',
@@ -32,14 +29,13 @@ export const Colors = {
     text: '#f9f9f9',
     textMuted: '#f9f9f950',
     textInverted: '#222222',
-    textLink: '#4f46e5',
+    textLink: '#3b82f6',
     background: '#222222',
     backgroundMuted: '#ffffff20',
     backgroundTransparent: 'f9f9f950',
     header: '#1d1d1d',
     heading: '#1d1d1d',
     tint: tintColorDark,
-    adminTint: adminTintColorDark,
     icon: '#ffffff',
     iconMuted: '#ffffff20',
     tabIconDefault: '#9BA1A6',

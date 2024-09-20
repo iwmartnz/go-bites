@@ -10,7 +10,7 @@ export default function MenuLayout() {
     <Stack
       screenOptions={{
         headerStyle: { backgroundColor: theme.background },
-        headerTintColor: theme.adminTint,
+        headerTintColor: theme.tint,
         headerLargeTitleShadowVisible: false,
         headerBackTitleStyle: { fontFamily: 'Satoshi-Medium' },
         headerTitleStyle: { fontFamily: 'Satoshi-Black' },
