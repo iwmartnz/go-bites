@@ -1,9 +1,10 @@
-import { FlatList, StyleSheet } from 'react-native';
-import { Stack } from 'expo-router';
+import { FlatList, Pressable, StyleSheet } from 'react-native';
+import { Link, Stack } from 'expo-router';
 
-import Product from '@/components/product';
+import ProductListItem from '@/components/product-list-item';
 import products from '../../../../assets/data/products';
 import { useTheme } from '@/hooks/useTheme';
+import { PlusSquare } from '@/components/icons';
 
 export default function MenuScreen() {
   const { theme } = useTheme();
@@ -14,13 +15,21 @@ export default function MenuScreen() {
         options={{
           title: 'Menu',
           headerLargeTitle: true,
+          headerLargeTitleStyle: { fontFamily: 'Satoshi-Black' },
           headerSearchBarOptions: { autoCapitalize: 'none' },
+          headerRight: () => (
+            <Link href='/cart' asChild>
+              <Pressable>
+                {({ pressed }) => <PlusSquare color={theme.adminTint} />}
+              </Pressable>
+            </Link>
+          ),
         }}
       />
       <FlatList
         data={products}
         contentInsetAdjustmentBehavior='automatic'
-        renderItem={({ item }) => <Product product={item} />}
+        renderItem={({ item }) => <ProductListItem product={item} />}
         numColumns={2}
         style={{ backgroundColor: theme.background }}
         contentContainerStyle={styles.content}
