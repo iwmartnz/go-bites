@@ -1,20 +1,21 @@
-import { StyleSheet, type PressableProps, Pressable, View } from 'react-native';
+import { StyleSheet, Pressable, View } from 'react-native';
 import { forwardRef } from 'react';
 import { useTheme } from '@/hooks/useTheme';
 import Text from '@/components/ui/text';
 
-type ButtonProps = PressableProps & {
+type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> & {
   type?: 'default' | 'chip';
   text: string;
 };
 
 const Button = forwardRef<View | null, ButtonProps>(
-  ({ style, type = 'default', text, ...res }, ref) => {
+  ({ type = 'default', text, ...pressableProps }, ref) => {
     const { theme } = useTheme();
 
     return (
       <Pressable
         ref={ref}
+        {...pressableProps}
         style={({ pressed }) => [
           type === 'default' && {
             ...styles.default,
@@ -25,7 +26,6 @@ const Button = forwardRef<View | null, ButtonProps>(
             backgroundColor: theme.chip,
           },
         ]}
-        {...res}
       >
         <Text
           style={[

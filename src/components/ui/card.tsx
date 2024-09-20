@@ -16,7 +16,7 @@ const Card = forwardRef<View | null, CardProps>(
         {...pressableProps}
         style={({ pressed }) => [
           styles.default,
-          { backgroundColor: theme.card },
+          { backgroundColor: theme.card, borderColor: theme.backgroundMuted },
           style,
         ]}
       >

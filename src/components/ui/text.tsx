@@ -1,37 +1,35 @@
-import { Text as NativeText, StyleSheet, type TextProps } from 'react-native';
+import { Text as NativeText, StyleSheet, View } from 'react-native';
 import { useTheme } from '@/hooks/useTheme';
+import { forwardRef } from 'react';
 
-type Props = TextProps & {
+type TextProps = React.ComponentPropsWithoutRef<typeof NativeText> & {
   type?: 'default' | 'heading' | 'subHeading' | 'label' | 'link';
   lightColor?: string;
   darkColor?: string;
 };
 
-export default function Text({
-  lightColor,
-  darkColor,
-  type = 'default',
-  style,
-  ...res
-}: Props) {
-  const { theme, getColor } = useTheme();
-  const color = getColor({ light: lightColor, dark: darkColor }, 'text');
+const Text = forwardRef<View | null, TextProps>(
+  ({ lightColor, darkColor, type = 'default', style, ...res }, ref) => {
+    const { theme, getColor } = useTheme();
+    const color = getColor({ light: lightColor, dark: darkColor }, 'text');
 
-  return (
-    <NativeText
-      style={[
-        { color, ...styles.default },
-        type === 'default' && styles.default,
-        type === 'heading' && styles.heading,
-        type === 'subHeading' && styles.subHeading,
-        type === 'label' && styles.label,
-        type === 'link' && styles.link,
-        style,
-      ]}
-      {...res}
-    />
-  );
-}
+    return (
+      <NativeText
+        ref={ref}
+        style={[
+          { color, ...styles.default },
+          type === 'default' && styles.default,
+          type === 'heading' && styles.heading,
+          type === 'subHeading' && styles.subHeading,
+          type === 'label' && styles.label,
+          type === 'link' && { color: theme.textLink },
+          style,
+        ]}
+        {...res}
+      />
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   default: {
@@ -51,15 +49,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    fontWeight: '600',
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
-  },
-  details: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontFamily: 'Satoshi-Bold',
   },
 });
+
+export default Text;
