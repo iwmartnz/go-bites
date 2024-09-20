@@ -1,5 +1,7 @@
 const tintColorLight = '#222222';
 const tintColorDark = '#f9f9f9';
+const adminTintColorLight = '#222222';
+const adminTintColorDark = '#1e40af';
 
 export const Colors = {
   light: {
@@ -12,6 +14,7 @@ export const Colors = {
     header: '#1d1d1d',
     heading: '#efefef',
     tint: tintColorLight,
+    adminTint: adminTintColorLight,
     icon: tintColorLight,
     iconMuted: '#b7b7b7',
     tabIconDefault: '#b7b7b7',
@@ -34,6 +37,7 @@ export const Colors = {
     header: '#1d1d1d',
     heading: '#1d1d1d',
     tint: tintColorDark,
+    adminTint: adminTintColorDark,
     icon: '#ffffff',
     iconMuted: '#ffffff20',
     tabIconDefault: '#9BA1A6',
