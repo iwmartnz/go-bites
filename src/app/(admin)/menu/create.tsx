@@ -1,18 +1,39 @@
 import { Button, Input, Text, View } from '@/components/ui';
 import React, { useState } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Alert, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Stack } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
 
 const CreateProductScreen = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState<string | null>(null);
 
+  const { id } = useLocalSearchParams();
+  const isUpdating = !!id;
+
+  const onSubmit = () => {
+    if (isUpdating) {
+      onUpdate();
+    } else {
+      onCreate();
+    }
+  };
+
   const onCreate = () => {
     console.log('creating product');
 
     resetFields();
+  };
+
+  const onUpdate = () => {
+    console.log('updating product');
+
+    resetFields();
+  };
+
+  const onDelete = () => {
+    console.log('Deleted');
   };
 
   const resetFields = () => {
@@ -36,9 +57,18 @@ const CreateProductScreen = () => {
     }
   };
 
+  const onConfirmDelete = () => {
+    Alert.alert('Confirm', 'Are you sure you want to delete this product?', [
+      { text: 'Cancel' },
+      { text: 'Delete', style: 'destructive', onPress: onDelete },
+    ]);
+  };
+
   return (
     <>
-      <Stack.Screen options={{ title: 'Create Product' }} />
+      <Stack.Screen
+        options={{ title: isUpdating ? 'Update Product' : 'Create Product' }}
+      />
       <View style={styles.container}>
         <Image
           source={{
@@ -70,8 +100,12 @@ const CreateProductScreen = () => {
             keyboardType='numeric'
           />
         </View>
-
-        <Button text='Create' onPress={onCreate} />
+        <View style={styles.actions}>
+          <Button text={isUpdating ? 'Update' : 'Create'} onPress={onSubmit} />
+          {isUpdating && (
+            <Button text='Delete' type='ghost' onPress={onConfirmDelete} />
+          )}
+        </View>
       </View>
     </>
   );
@@ -94,6 +128,9 @@ const styles = StyleSheet.create({
   formField: {
     gap: 5,
     paddingBottom: 15,
+  },
+  actions: {
+    gap: 15,
   },
 });
 
