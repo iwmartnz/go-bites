@@ -35,8 +35,6 @@ export default function ProductDetailScreen() {
       <Stack.Screen
         options={{
           title: product.name,
-          headerBackTitleStyle: { fontFamily: 'Satoshi-Medium' },
-          headerTitleStyle: { fontFamily: 'Satoshi-Black' },
           headerRight: () => (
             <Link href='/cart' asChild>
               <Pressable>

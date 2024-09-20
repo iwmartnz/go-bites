@@ -12,6 +12,8 @@ export default function MenuLayout() {
         headerStyle: { backgroundColor: theme.background },
         headerTintColor: theme.adminTint,
         headerLargeTitleShadowVisible: false,
+        headerBackTitleStyle: { fontFamily: 'Satoshi-Medium' },
+        headerTitleStyle: { fontFamily: 'Satoshi-Black' },
       }}
     />
   );
