@@ -4,10 +4,10 @@ import { useLocalSearchParams, Stack, useRouter, Link } from 'expo-router';
 
 import products from '../../../../assets/data/products';
 
-import { Button, Text, View } from '@/components/ui';
+import { Text, View } from '@/components/ui';
 import { useCart } from '@/context/cart-context';
 import { PizzaSize } from '@/types';
-import { Edit, PlusSquare } from '@/components/icons';
+import { Edit } from '@/components/icons';
 import { useTheme } from '@/hooks/useTheme';
 
 export default function ProductDetailScreen() {
@@ -36,7 +36,7 @@ export default function ProductDetailScreen() {
         options={{
           title: product.name,
           headerRight: () => (
-            <Link href='/cart' asChild>
+            <Link href={`/(admin)/menu/create?id=${id}`} asChild>
               <Pressable>
                 {({ pressed }) => (
                   <Edit color={theme.adminTint} variant='filled' />
