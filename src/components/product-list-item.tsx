@@ -2,15 +2,17 @@ import { Image, Pressable, StyleSheet } from 'react-native';
 import { Text, View } from './ui';
 
 import type { Product } from '@/types';
-import { Link } from 'expo-router';
+import { Link, useSegments } from 'expo-router';
 import Card from './ui/card';
 
 type ProductProps = {
   product: Product;
 };
-export default function Product({ product }: ProductProps) {
+const ProductListItem = ({ product }: ProductProps) => {
+  const segments = useSegments();
+
   return (
-    <Link href={`/menu/${product.id}`} asChild>
+    <Link href={`/${segments[0]}/menu/${product.id}`} asChild>
       <Card style={styles.card}>
         <Image
           source={{ uri: product.image || '' }}
@@ -22,7 +24,7 @@ export default function Product({ product }: ProductProps) {
       </Card>
     </Link>
   );
-}
+};
 
 const styles = StyleSheet.create({
   card: {
@@ -36,3 +38,5 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
 });
+
+export default ProductListItem;
