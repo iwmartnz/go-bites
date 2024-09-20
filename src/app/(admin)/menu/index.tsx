@@ -18,7 +18,7 @@ export default function MenuScreen() {
           headerLargeTitleStyle: { fontFamily: 'Satoshi-Black' },
           headerSearchBarOptions: { autoCapitalize: 'none' },
           headerRight: () => (
-            <Link href='/cart' asChild>
+            <Link href='/(admin)/menu/create' asChild>
               <Pressable>
                 {({ pressed }) => <PlusSquare color={theme.adminTint} />}
               </Pressable>
