@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   actions: {
-    gap: 15,
+    paddingTop: 15,
+    gap: 5,
   },
 });
 
