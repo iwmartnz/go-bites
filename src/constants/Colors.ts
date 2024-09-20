@@ -21,7 +21,7 @@ export const Colors = {
     tabIconDefault: '#b7b7b7',
     tabIconSelected: tintColorLight,
     button: '#222222',
-    buttonSecondary: '#222222',
+    buttonSecondary: '#f9f9f9',
     input: '#ededed',
     card: '#fff',
     chip: '#ededed',
