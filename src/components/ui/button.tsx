@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import Text from '@/components/ui/text';
 
 type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> & {
-  type?: 'default' | 'chip';
+  type?: 'default' | 'chip' | 'ghost';
   text: string;
 };
 
@@ -20,6 +20,10 @@ const Button = forwardRef<View | null, ButtonProps>(
           type === 'default' && {
             ...styles.default,
             backgroundColor: theme.button,
+          },
+          type === 'ghost' && {
+            ...styles.default,
+            backgroundColor: theme.backgroundTransparent,
           },
           type === 'chip' && {
             ...styles.chip,
@@ -47,9 +51,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  secondary: {
-    backgroundColor: '#5b5b5b',
   },
   chip: {
     paddingVertical: 5,
