@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 26,
     lineHeight: 26,
-    fontFamily: 'Satoshi-Bold',
+    fontFamily: 'Satoshi-Black',
   },
   subHeading: {
     fontSize: 18,
