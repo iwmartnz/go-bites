@@ -8,7 +8,7 @@ const index = () => {
       <Link href={'/(user)'} asChild>
         <Button text='User' />
       </Link>
-      <Link href={'/(admin)'} asChild>
+      <Link href={'/(auth)'} asChild>
         <Button text='Admin' />
       </Link>
     </View>
