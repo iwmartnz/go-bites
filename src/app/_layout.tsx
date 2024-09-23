@@ -27,6 +27,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
+    Quantify: require('../../assets/fonts/Quantify.ttf'),
     'Satoshi-Regular': require('../../assets/fonts/Satoshi-Regular.otf'),
     'Satoshi-Medium': require('../../assets/fonts/Satoshi-Medium.otf'),
     'Satoshi-Bold': require('../../assets/fonts/Satoshi-Bold.otf'),
@@ -61,6 +62,7 @@ function RootLayoutNav() {
         <Stack
           screenOptions={{ headerStyle: { backgroundColor: theme.background } }}
         >
+          <Stack.Screen name='(auth)' options={{ headerShown: false }} />
           <Stack.Screen name='(admin)' options={{ headerShown: false }} />
           <Stack.Screen name='(user)' options={{ headerShown: false }} />
           <Stack.Screen
