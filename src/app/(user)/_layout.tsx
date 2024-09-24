@@ -4,6 +4,7 @@ import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 
 import { useTheme } from '@/hooks/useTheme';
+import { Menu, Orders } from '@/components/icons';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -28,20 +29,25 @@ export default function TabLayout() {
           backgroundColor: theme.background,
           borderBlockColor: theme.background,
         },
+        tabBarLabelStyle: { fontFamily: 'Satoshi-Bold' },
       }}
     >
       <Tabs.Screen
         name='menu'
         options={{
           title: 'Menu',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <Menu color={color} variant={focused ? 'filled' : 'outline'} />
+          ),
         }}
       />
       <Tabs.Screen
-        name='two'
+        name='orders'
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+          title: 'Orders',
+          tabBarIcon: ({ color, focused }) => (
+            <Orders color={color} variant={focused ? 'filled' : 'outline'} />
+          ),
         }}
       />
       <Tabs.Screen name='index' options={{ href: null }} />

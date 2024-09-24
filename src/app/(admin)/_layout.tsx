@@ -1,9 +1,9 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Tabs } from 'expo-router';
 
 import { useTheme } from '@/hooks/useTheme';
+import { Menu, Orders } from '@/components/icons';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -34,14 +34,18 @@ export default function TabLayout() {
         name='menu'
         options={{
           title: 'Menu',
-          tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <Menu color={color} variant={focused ? 'filled' : 'outline'} />
+          ),
         }}
       />
       <Tabs.Screen
-        name='two'
+        name='orders'
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name='list' color={color} />,
+          title: 'Orders',
+          tabBarIcon: ({ color, focused }) => (
+            <Orders color={color} variant={focused ? 'filled' : 'outline'} />
+          ),
         }}
       />
       <Tabs.Screen name='index' options={{ href: null }} />
