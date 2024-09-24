@@ -15,7 +15,6 @@ export default function MenuScreen() {
         options={{
           title: 'Menu',
           headerLargeTitle: true,
-          headerLargeTitleStyle: { fontFamily: 'Satoshi-Black' },
           headerSearchBarOptions: { autoCapitalize: 'none' },
           headerRight: () => (
             <Link href='/(admin)/menu/create' asChild>

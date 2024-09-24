@@ -12,6 +12,9 @@ export default function MenuLayout() {
         headerStyle: { backgroundColor: theme.background },
         headerTintColor: theme.tint,
         headerLargeTitleShadowVisible: false,
+        headerBackTitleStyle: { fontFamily: 'Satoshi-Medium' },
+        headerTitleStyle: { fontFamily: 'Satoshi-Black' },
+        headerLargeTitleStyle: { fontFamily: 'Satoshi-Black' },
         headerRight: () => (
           <Link href='/cart' asChild>
             <Pressable>
