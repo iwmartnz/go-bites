@@ -10,7 +10,7 @@ import { PizzaSize } from '@/types';
 import { Edit } from '@/components/icons';
 import { useTheme } from '@/hooks/useTheme';
 
-export default function ProductDetailScreen() {
+export default function ProductDetailsPage() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const { theme } = useTheme();

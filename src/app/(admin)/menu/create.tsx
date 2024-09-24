@@ -4,7 +4,7 @@ import { Alert, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
-const CreateProductScreen = () => {
+export default function CreateProductPage() {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState<string | null>(null);
@@ -109,7 +109,7 @@ const CreateProductScreen = () => {
       </View>
     </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -134,5 +134,3 @@ const styles = StyleSheet.create({
     gap: 5,
   },
 });
-
-export default CreateProductScreen;

@@ -5,7 +5,7 @@ import products from '../../../../assets/data/products';
 import { useTheme } from '@/hooks/useTheme';
 import ProductListItem from '@/components/product-list-item';
 
-export default function MenuScreen() {
+export default function MenuPage() {
   const { theme } = useTheme();
 
   return (

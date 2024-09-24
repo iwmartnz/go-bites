@@ -7,7 +7,7 @@ import CartListItem from '@/components/cart-Item';
 import { useTheme } from '@/hooks/useTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const CartScreen = () => {
+export default function CartPage() {
   const insets = useSafeAreaInsets();
   const { theme } = useTheme();
   const { items, total } = useCart();
@@ -25,7 +25,7 @@ const CartScreen = () => {
       <Button text='Checkout' />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: 15 },
@@ -33,5 +33,3 @@ const styles = StyleSheet.create({
     gap: 15,
   },
 });
-
-export default CartScreen;

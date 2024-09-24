@@ -6,7 +6,7 @@ import products from '../../../../assets/data/products';
 import { useTheme } from '@/hooks/useTheme';
 import { PlusSquare } from '@/components/icons';
 
-export default function MenuScreen() {
+export default function MenuPage() {
   const { theme } = useTheme();
 
   return (

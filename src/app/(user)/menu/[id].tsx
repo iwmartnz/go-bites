@@ -10,7 +10,7 @@ import { PizzaSize } from '@/types';
 
 const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
-export default function ProductDetailScreen() {
+export default function ProductDetailsPage() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const product = products.find((product) => product.id.toString() === id);

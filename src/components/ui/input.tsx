@@ -5,7 +5,11 @@ type InputProps = React.ComponentPropsWithoutRef<typeof TextInput> & {
   size: 'sm' | 'md' | 'lg';
 };
 
-const Input = ({ size = 'sm', style, ...inputProps }: InputProps) => {
+export default function Input({
+  size = 'sm',
+  style,
+  ...inputProps
+}: InputProps) {
   const { theme } = useTheme();
 
   return (
@@ -23,7 +27,7 @@ const Input = ({ size = 'sm', style, ...inputProps }: InputProps) => {
       cursorColor={theme.backgroundMuted}
     />
   );
-};
+}
 
 const styles = StyleSheet.create({
   default: {
@@ -42,5 +46,3 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-
-export default Input;
