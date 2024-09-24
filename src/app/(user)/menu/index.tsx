@@ -1,9 +1,10 @@
 import { FlatList, StyleSheet } from 'react-native';
 import { Stack } from 'expo-router';
 
-import products from '../../../../assets/data/products';
-import { useTheme } from '@/hooks/useTheme';
 import ProductListItem from '@/components/product-list-item';
+import { useTheme } from '@/hooks/useTheme';
+
+import products from '../../../../assets/data/products';
 
 export default function MenuPage() {
   const { theme } = useTheme();
