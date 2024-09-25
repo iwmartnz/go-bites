@@ -1,13 +1,17 @@
+import { FlatList, StyleSheet } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { Text, View, Card } from '@/components/ui';
+
+import { Text, View } from '@/components/ui';
 import OrderListItem from '@/components/order-list-item';
-import orders from '../../../../assets/data/orders';
-import { Image, StyleSheet } from 'react-native';
 import OrderDetailsListItem from '@/components/order-details-list-item';
-import Time from '@/components/time';
+
+import { useTheme } from '@/hooks/useTheme';
+
+import orders from '../../../../assets/data/orders';
 
 export default function OrderDetailsPage() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { theme } = useTheme();
 
   const order = orders.find((order) => order.id.toString() === id);
 
@@ -22,22 +26,18 @@ export default function OrderDetailsPage() {
           title: `Order Details`,
         }}
       />
-      <View style={styles.container}>
-        <Card style={styles.header}>
-          <View transparent>
-            <Text type='subHeading'>Order #:{order.id}</Text>
-            <Time date={order.created_at} variant='fromNow' />
+      <FlatList
+        style={[{ backgroundColor: theme.background }, styles.container]}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <OrderListItem order={order} />
+            <Text type='label'>Products in the order:</Text>
           </View>
-          <Text>{order.status}</Text>
-        </Card>
-        <View style={styles.list}>
-          <Text type='label'>Products in the order:</Text>
-
-          {order.order_items?.map((item) => (
-            <OrderDetailsListItem order={item} key={item.id} />
-          ))}
-        </View>
-      </View>
+        }
+        data={order.order_items}
+        renderItem={({ item }) => <OrderDetailsListItem order={item} />}
+        contentContainerStyle={styles.list}
+      />
     </>
   );
 }
@@ -47,15 +47,8 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
   },
-  header: {
-    maxHeight: 100,
-    gap: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+  header: { gap: 15 },
   list: {
-    paddingTop: 10,
-    gap: 10,
+    gap: 15,
   },
 });
