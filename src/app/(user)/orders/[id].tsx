@@ -4,6 +4,7 @@ import OrderListItem from '@/components/order-list-item';
 import orders from '../../../../assets/data/orders';
 import { Image, StyleSheet } from 'react-native';
 import OrderDetailsListItem from '@/components/order-details-list-item';
+import Time from '@/components/time';
 
 export default function OrderDetailsPage() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -25,7 +26,7 @@ export default function OrderDetailsPage() {
         <Card style={styles.header}>
           <View transparent>
             <Text type='subHeading'>Order #:{order.id}</Text>
-            <Text>{order.created_at}</Text>
+            <Time date={order.created_at} variant='fromNow' />
           </View>
           <Text>{order.status}</Text>
         </Card>
