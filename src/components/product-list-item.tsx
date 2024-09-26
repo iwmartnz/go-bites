@@ -4,11 +4,13 @@ import { Text, View } from './ui';
 import type { Product } from '@/types';
 import { Link, useSegments } from 'expo-router';
 import Card from './ui/card';
+import { useTheme } from '@/hooks/useTheme';
 
 type ProductProps = {
   product: Product;
 };
 const ProductListItem = ({ product }: ProductProps) => {
+  const theme = useTheme();
   const segments = useSegments();
 
   return (
@@ -20,7 +22,7 @@ const ProductListItem = ({ product }: ProductProps) => {
           resizeMode='contain'
         />
         <Text type='subHeading'>{product.name}</Text>
-        <Text style={styles.price}>${product.price}</Text>
+        <Text type='price'>${product.price}</Text>
       </Card>
     </Link>
   );
@@ -33,9 +35,6 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     aspectRatio: 1,
-  },
-  price: {
-    color: 'blue',
   },
 });
 

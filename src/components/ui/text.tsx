@@ -3,26 +3,24 @@ import { useTheme } from '@/hooks/useTheme';
 import { forwardRef } from 'react';
 
 type TextProps = React.ComponentPropsWithoutRef<typeof NativeText> & {
-  type?: 'default' | 'heading' | 'subHeading' | 'label' | 'link';
-  lightColor?: string;
-  darkColor?: string;
+  type?: 'default' | 'heading' | 'subHeading' | 'label' | 'link' | 'price';
 };
 
 const Text = forwardRef<View | null, TextProps>(
-  ({ lightColor, darkColor, type = 'default', style, ...res }, ref) => {
+  ({ type = 'default', style, ...res }, ref) => {
     const { theme, getColor } = useTheme();
-    const color = getColor({ light: lightColor, dark: darkColor }, 'text');
 
     return (
       <NativeText
         ref={ref}
         style={[
-          { color, ...styles.default },
+          { color: theme.text, ...styles.default },
           type === 'default' && styles.default,
           type === 'heading' && styles.heading,
           type === 'subHeading' && styles.subHeading,
           type === 'label' && styles.label,
           type === 'link' && { color: theme.textLink },
+          type === 'price' && { color: theme.textMuted },
           style,
         ]}
         {...res}
