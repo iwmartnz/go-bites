@@ -35,7 +35,7 @@ const Button = forwardRef<View | null, ButtonProps>(
           style={[
             { ...styles.textDefault },
             type === 'default' && { color: theme.textInverted },
-            type === 'chip' && { color: theme.chipText },
+            type === 'chip' && { ...styles.textChip, color: theme.chipText },
           ]}
         >
           {text}
@@ -53,13 +53,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   chip: {
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     borderRadius: 50,
   },
   textDefault: {
     fontSize: 16,
     fontFamily: 'Satoshi-Black',
+  },
+  textChip: {
+    fontFamily: 'Satoshi-Bold',
   },
 });
 

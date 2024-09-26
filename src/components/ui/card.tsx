@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#e2e2e2',
   },
 });
 
