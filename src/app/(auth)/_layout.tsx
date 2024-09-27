@@ -1,9 +1,15 @@
+import { useAuth } from '@/context/auth';
 import { useTheme } from '@/hooks/useTheme';
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import React from 'react';
 
 export default function AuthLayout() {
   const { theme } = useTheme();
+  const { session } = useAuth();
+
+  if (session?.user) {
+    return <Redirect href={'/'} />;
+  }
   return (
     <Stack
       screenOptions={{

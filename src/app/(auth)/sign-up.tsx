@@ -1,8 +1,24 @@
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import { Button, Input, Text, View } from '@/components/ui';
 import { Link, Stack } from 'expo-router';
+import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export default function SignUpPage() {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+
+  async function signUpWithEmail() {
+    setLoading(true);
+    const { error } = await supabase.auth.signUp({ email, password });
+
+    if (error) {
+      Alert.alert(error.message);
+    }
+    setLoading(false);
+  }
+
   return (
     <>
       <Stack.Screen
@@ -13,7 +29,7 @@ export default function SignUpPage() {
           headerShadowVisible: false,
         }}
       />
-      <View type='safeArea' style={styles.container}>
+      <View variant='safeArea' style={styles.container}>
         <View style={styles.header}>
           <Text type='heading'>Create account</Text>
 
@@ -23,16 +39,31 @@ export default function SignUpPage() {
           </View>
           <View style={styles.formField}>
             <Text type='label'>Email</Text>
-            <Input size='lg' placeholder='email@example.com' />
+            <Input
+              size='lg'
+              placeholder='email@example.com'
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize='none'
+            />
           </View>
           <View style={styles.formField}>
             <Text type='label'>Password</Text>
-            <Input size='lg' secureTextEntry />
+            <Input
+              size='lg'
+              secureTextEntry
+              value={password}
+              onChangeText={setPassword}
+              autoCapitalize='none'
+            />
           </View>
         </View>
         <View style={styles.footer}>
-          <Button text='Register' />
-          <Link href='/(auth)/' asChild>
+          <Button
+            text={loading ? 'Creating account' : 'Register'}
+            onPress={signUpWithEmail}
+          />
+          <Link href='/(auth)/sign-in' asChild>
             <Text style={styles.link}>
               Already have an account?{' '}
               <Text type='link' style={{ fontFamily: 'Satoshi-Black' }}>

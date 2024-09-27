@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { CartProvider } from '@/context/cart-context';
 import { useTheme } from '@/hooks/useTheme';
+import AuthProvider from '@/context/auth';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -34,8 +35,8 @@ export default function RootLayout() {
     'Satoshi-Black': require('../../assets/fonts/Satoshi-Black.otf'),
     ...FontAwesome.font,
   });
+  const { colorScheme, theme } = useTheme();
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -49,33 +50,30 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const { colorScheme, theme } = useTheme();
-
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <CartProvider>
-        <Stack
-          screenOptions={{ headerStyle: { backgroundColor: theme.background } }}
-        >
-          <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-          <Stack.Screen name='(admin)' options={{ headerShown: false }} />
-          <Stack.Screen name='(user)' options={{ headerShown: false }} />
-          <Stack.Screen
-            name='cart'
-            options={{
-              presentation: 'modal',
-              title: 'Cart',
-              headerShadowVisible: false,
-              headerTitleStyle: { fontFamily: 'Satoshi-Black' },
+      <AuthProvider>
+        <CartProvider>
+          <Stack
+            screenOptions={{
+              headerStyle: { backgroundColor: theme.background },
             }}
-          />
-        </Stack>
-      </CartProvider>
+          >
+            <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+            <Stack.Screen name='(admin)' options={{ headerShown: false }} />
+            <Stack.Screen name='(user)' options={{ headerShown: false }} />
+            <Stack.Screen
+              name='cart'
+              options={{
+                presentation: 'modal',
+                title: 'Cart',
+                headerShadowVisible: false,
+                headerTitleStyle: { fontFamily: 'Satoshi-Black' },
+              }}
+            />
+          </Stack>
+        </CartProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

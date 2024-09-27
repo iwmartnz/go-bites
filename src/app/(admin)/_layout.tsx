@@ -1,10 +1,16 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 
 import { useTheme } from '@/hooks/useTheme';
 import { Menu, Orders } from '@/components/icons';
+import { useAuth } from '@/context/auth';
 
 export default function TabLayout() {
   const { theme } = useTheme();
+  const { isAdmin } = useAuth();
+
+  if (!isAdmin) {
+    return <Redirect href={'/'} />;
+  }
 
   return (
     <Tabs

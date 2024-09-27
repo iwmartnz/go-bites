@@ -1,10 +1,16 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 
 import { useTheme } from '@/hooks/useTheme';
-import { Menu, Orders } from '@/components/icons';
+import { Home, Menu, Orders, User } from '@/components/icons';
+import { useAuth } from '@/context/auth';
 
 export default function TabLayout() {
   const { theme } = useTheme();
+  const { session } = useAuth();
+
+  if (!session) {
+    return <Redirect href={'/'} />;
+  }
 
   return (
     <Tabs
@@ -26,7 +32,7 @@ export default function TabLayout() {
         options={{
           title: 'Menu',
           tabBarIcon: ({ color, focused }) => (
-            <Menu color={color} variant={focused ? 'filled' : 'outline'} />
+            <Home color={color} variant={focused ? 'filled' : 'outline'} />
           ),
         }}
       />
@@ -36,6 +42,15 @@ export default function TabLayout() {
           title: 'Orders',
           tabBarIcon: ({ color, focused }) => (
             <Orders color={color} variant={focused ? 'filled' : 'outline'} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name='profile'
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color, focused }) => (
+            <User color={color} variant={focused ? 'filled' : 'outline'} />
           ),
         }}
       />
