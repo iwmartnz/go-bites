@@ -22,8 +22,8 @@ export default function HomePage() {
         <Link href={'/(user)'} asChild>
           <Button text='User' />
         </Link>
-        <Link href={'/(admin)'} asChild>
-          <Button text='Admin' />
+        <Link href={'/(business)/'} asChild>
+          <Button text='Business' />
         </Link>
       </View>
     );

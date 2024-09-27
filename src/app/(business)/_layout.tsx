@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { Menu, Orders } from '@/components/icons';
 import { useAuth } from '@/context/auth';
 
-export default function TabLayout() {
+export default function BusinessLayout() {
   const { theme } = useTheme();
   const { isAdmin } = useAuth();
 
