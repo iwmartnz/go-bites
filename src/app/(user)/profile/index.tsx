@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
 import { View, Text, Button } from '@/components/ui';
@@ -19,6 +19,7 @@ export default function ProfilePage() {
         <Text>User ID: {session?.user.id}</Text>
         <Text>Test</Text>
         <Button text='Sign out' onPress={() => supabase.auth.signOut()} />
+        <Link href={'/(business)/menu'}>Switch to Business Account</Link>
       </View>
     </>
   );
